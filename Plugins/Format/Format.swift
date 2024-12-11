@@ -9,7 +9,7 @@ import PackagePlugin
 import Foundation
 
 @main
-struct SwiftFormatCommandToolPlugin: CommandPlugin {
+struct Format: CommandPlugin {
     func performCommand(context: PluginContext, arguments: [String]) async throws {
         // Find the swift tool to run.
         let swiftTool = try context.tool(named: "swift")
@@ -32,7 +32,7 @@ struct SwiftFormatCommandToolPlugin: CommandPlugin {
 #if canImport(XcodeProjectPlugin)
 import XcodeProjectPlugin
 
-extension SwiftFormatCommandToolPlugin: XcodeCommandPlugin {
+extension Format: XcodeCommandPlugin {
     func performCommand(context: XcodeProjectPlugin.XcodePluginContext, arguments: [String]) throws {
         // Find the swift tool to run.
         let swiftTool = try context.tool(named: "swift")
@@ -48,7 +48,7 @@ extension SwiftFormatCommandToolPlugin: XcodeCommandPlugin {
 
 #endif
 
-extension SwiftFormatCommandToolPlugin {
+extension Format {
     /// Shared function that performs the command on the source files that should be processed.
     func performCommand(on sourceFiles: FileList, with swiftToolURL: URL, for targetName: String) throws {
         let configurationFileURL = sourceFiles.first(where: { file in file.url.pathExtension == "swift-format" })?.url

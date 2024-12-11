@@ -8,20 +8,20 @@ let package = Package(
     products: [
         .plugin(
             name: "Lint",
-            targets: ["SwiftFormatLintBuildToolPlugin"]
+            targets: ["Lint"]
         ),
         .plugin(
             name: "Format",
-            targets: ["SwiftFormatCommandToolPlugin"]
+            targets: ["Format"]
         ),
     ],
     targets: [
         .plugin(
-            name: "SwiftFormatLintBuildToolPlugin",
+            name: "Lint",
             capability: .buildTool()
         ),
         .plugin(
-            name: "SwiftFormatCommandToolPlugin",
+            name: "Format",
             capability: .command(
                 intent: .sourceCodeFormatting(),
                 permissions: [.writeToPackageDirectory(reason: "Format source code")]
