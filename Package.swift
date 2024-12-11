@@ -22,7 +22,10 @@ let package = Package(
         ),
         .plugin(
             name: "Format",
-            capability: .buildTool()
+            capability: .command(
+                intent: .sourceCodeFormatting(),
+                permissions: [.writeToPackageDirectory(reason: "Format source code")]
+            )
         )
     ]
 )
